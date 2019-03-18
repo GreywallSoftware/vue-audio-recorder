@@ -291,9 +291,9 @@
       Uploader
     },
     mounted () {
-      this.$eventBus.$on('start-upload', () => {
+      this.$eventBus.$on('start-upload', (file) => {
         this.isUploading = true
-        this.beforeUpload && this.beforeUpload('before upload')
+        this.beforeUpload && this.beforeUpload(file)
       })
 
       this.$eventBus.$on('end-upload', (msg) => {

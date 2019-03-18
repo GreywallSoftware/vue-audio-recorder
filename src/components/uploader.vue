@@ -24,19 +24,21 @@
           return
         }
 
-        this.$eventBus.$emit('start-upload')
+        this.$eventBus.$emit('start-upload', this.record)
 
-        const data = new FormData()
-        data.append('audio', this.record.blob, `${this.filename}.mp3`)
+        if (this.uploadUrl) {
+          const data = new FormData()
+          data.append('audio', this.record.blob, `${this.filename}.mp3`)
 
-        const headers = Object.assign(this.headers, {})
-        headers['Content-Type'] = `multipart/form-data; boundary=${data._boundary}`
+          const headers = Object.assign(this.headers, {})
+          headers['Content-Type'] = `multipart/form-data; boundary=${data._boundary}`
 
-        this.$http.post(this.uploadUrl, data, { headers: headers }).then(resp => {
-          this.$eventBus.$emit('end-upload', { status: 'success', response: resp })
-        }).catch(error => {
-          this.$eventBus.$emit('end-upload', { status: 'fail', response: error })
-        })
+          this.$http.post(this.uploadUrl, data, { headers: headers }).then(resp => {
+            this.$eventBus.$emit('end-upload', { status: 'success', response: resp })
+          }).catch(error => {
+            this.$eventBus.$emit('end-upload', { status: 'fail', response: error })
+          })
+        }
       }
     }
   }
