@@ -1,6 +1,9 @@
 # vue-audio-recorder
 
 > Audio recorder for Vue.js. It allows to create, play, download and store records on a server.
+> Fork of https://github.com/grishkovelli/vue-audio-recorder to allow users to intercept the upload method and handle it themselves. 
+
+This was published strictly for ease of installation in our application.
 
 #### [Live demo](https://jsfiddle.net/grishkovelli/rb1anxyj/)
 
@@ -58,7 +61,7 @@ npm i vue-audio-recorder --save
 ## Usage
 
 ```js
-    import AudioRecorder from 'vue-audio-recorder'
+    import AudioRecorder from '@greywallsoftware/vue-audio-recorder'
 
     Vue.use(AudioRecorder)
 ```
